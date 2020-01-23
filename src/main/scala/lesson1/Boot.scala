@@ -1,3 +1,5 @@
+package lesson1
+
 object Boot extends App {
 
   println("Hello World")
