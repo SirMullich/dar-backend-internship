@@ -67,6 +67,7 @@ object Boot extends App {
 
   assert(multiply(5, 6) == 30)
   assert(multiply(5, 0) == 0)
+  // ip:port,ip2:port2,ip3:port3,ip4
 
 
   val subtract2: (Int, Int) => Unit = (x: Int, y: Int) => {
