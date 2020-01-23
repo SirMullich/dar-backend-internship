@@ -46,4 +46,6 @@ object Boot extends App {
 
   val lambo3 = lambo1.copy(year = 2020) // Lambo("Lambo", 2020, "Blue")
   println(lambo3)
+
+  // dummy line to test git
 }
