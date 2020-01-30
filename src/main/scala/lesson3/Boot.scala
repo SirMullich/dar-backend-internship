@@ -57,6 +57,7 @@ object Boot extends App {
   val list1 = Pair(2, Pair(10, Pair(5, Pair(-8, Pair(1, End)))))
   println(list1)
 
+  // TODO: port this to IntList
   def sumList(list: IntList): Int = list match {
     case End => 0
     case Pair(head, tail) => head + sumList(tail)
@@ -71,5 +72,13 @@ object Boot extends App {
   }
 
   println(s"Sum of list is: ${sumList(list1)}")
+
+
+  println(s"fold list sum: ${list1.fold(25, (x: Int, y: Int) => x + y)}")
+  println(s"fold list product: ${list1.fold(1, (x: Int, y: Int) => x * y)}")
+//  println(s"fold list: ${list1.fold(25, (x: Int, y: Int) => x + y)}")
+
+  println(s"mapped list: ${list1.map(x => x + 100)}")
+
 
 }
