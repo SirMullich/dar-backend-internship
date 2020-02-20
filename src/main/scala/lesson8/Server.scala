@@ -3,10 +3,11 @@ package lesson8
 import akka.actor.typed.scaladsl.Behaviors
 import akka.actor.typed.{Behavior, PostStop}
 import akka.actor.typed.scaladsl.adapter._
+import com.outworkers.phantom.dsl._
 import akka.stream.ActorMaterializer
 import akka.http.scaladsl.Http.ServerBinding
 import akka.http.scaladsl.Http
-import lesson8.repository.InMemoryRepository
+import lesson8.repository.{CassandraRepository, InMemoryRepository}
 
 import scala.concurrent.{ExecutionContextExecutor, Future}
 import scala.util.{Failure, Success}
@@ -26,10 +27,18 @@ object Server {
     // implicit materializer only required in Akka 2.5
     // in 2.6 having an implicit classic or typed ActorSystem in scope is enough
     implicit val materializer: ActorMaterializer = ActorMaterializer()(ctx.system.toClassic)
-    implicit val ec: ExecutionContextExecutor = ctx.system.executionContext
+//    implicit val ec: ExecutionContextExecutor = ctx.system.executionContext
 
     val inMemoryRepository = InMemoryRepository()
-    val application = ctx.spawn(Application(inMemoryRepository), "application")
+
+
+    val cassandraRepository = CassandraRepository()
+    // create tables
+    cassandraRepository.database.create()
+
+
+//    val application = ctx.spawn(Application(inMemoryRepository), "application") // in memory
+    val application = ctx.spawn(Application(cassandraRepository), "application") // cassandra
     val routes = new JobRoutes(application)
 
     val serverBinding: Future[Http.ServerBinding] =

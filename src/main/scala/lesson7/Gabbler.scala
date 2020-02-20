@@ -20,7 +20,7 @@ object Gabbler {
 
 
       case MessagePosted(screenName, message) =>
-        context.log.info("Message has been posted by '{}': {}", screenName, message)
+//        context.log.info("Message has been posted by '{}': {}", screenName, message)
         Behaviors.same
     }
 

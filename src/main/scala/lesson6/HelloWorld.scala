@@ -13,7 +13,7 @@ object HelloWorld {
   // context.self -> actor1  Greeted
 
   def apply(): Behavior[Greet] = Behaviors.receive { (context, message) => // when msg is received
-    context.log.info("Hello {}. I'm: {}", message.whom, context.self.path.name) // log
+//    context.log.info("Hello {}. I'm: {}", message.whom, context.self.path.name) // log
     message.replyTo ! Greeted(message.whom, context.self) // reply to actor (bot)
     Behaviors.same                // do not change behavior
   }

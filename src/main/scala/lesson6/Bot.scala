@@ -2,6 +2,9 @@ package lesson6
 
 import akka.actor.typed.Behavior
 import akka.actor.typed.scaladsl.Behaviors
+import akka.actor.typed.scaladsl.LoggerOps
+
+
 
 object Bot {
 
@@ -9,7 +12,7 @@ object Bot {
 
   def bot(greetingCounter: Int, max: Int): Behavior[HelloWorld.Greeted] = Behaviors.receive { (context, message) =>
     val n = greetingCounter + 1
-    context.log.info("Greeting {} for {}. I'm: {}", n, message.whom, context.self.path.name)
+    context.log.info(s"Greeting ${n} for ${message.whom}. I'm: ${context.self.path.name}")
     if (n == max) Behaviors.stopped
     else {
       message.from ! HelloWorld.Greet(message.whom, context.self)
