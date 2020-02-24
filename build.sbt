@@ -16,4 +16,5 @@ libraryDependencies ++= Seq(
   //cassandra
   "com.outworkers"         %% "phantom-dsl"          % phantomVersion,
   "org.scala-lang"    % "scala-reflect"              % scalaVersion.value,
+  "com.rabbitmq" % "amqp-client" % "5.7.3"
 )
