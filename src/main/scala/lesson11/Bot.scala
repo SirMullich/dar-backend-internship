@@ -11,7 +11,7 @@ case object Tick extends BotCommand
 
 object Bot {
   def apply(count: Int): Behavior[BotCommand] = Behaviors.withTimers[BotCommand] { timers =>
-    timers.startTimerWithFixedDelay(Tick, 5.minutes)
+    timers.startTimerWithFixedDelay(Tick, 5.seconds)
     Behaviors.setup { ctx =>
       Behaviors.receiveMessage {
         case Tick =>
