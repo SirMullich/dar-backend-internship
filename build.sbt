@@ -5,6 +5,7 @@ version := "0.1"
 scalaVersion := "2.12.10"
 
 lazy val phantomVersion    = "2.42.0"
+val circeVersion = "0.12.3"
 
 libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-actor-typed" % "2.6.3",
@@ -16,5 +17,8 @@ libraryDependencies ++= Seq(
   //cassandra
   "com.outworkers"         %% "phantom-dsl"          % phantomVersion,
   "org.scala-lang"    % "scala-reflect"              % scalaVersion.value,
-  "com.rabbitmq" % "amqp-client" % "5.7.3"
+  "com.rabbitmq" % "amqp-client" % "5.7.3",
+  "io.circe" %% "circe-core" % circeVersion,
+  "io.circe" %% "circe-generic" % circeVersion,
+  "io.circe" %% "circe-parser" % circeVersion
 )
